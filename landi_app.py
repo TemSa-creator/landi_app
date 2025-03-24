@@ -17,25 +17,29 @@ st.markdown(
 
     /* Transparenter Bereich mit Stil */
     .main > div {
-        background-color: rgba(245, 245, 245, 0.85); /* zartes Grau */
+        background-color: rgba(255, 255, 255, 0.92); /* helleres Weiß für bessere Lesbarkeit */
         padding: 2rem;
         border-radius: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
     h1, h2, h3, h4 {
-        color: #222;
+        color: #111;
         font-weight: 700;
     }
 
     p, label, .stMarkdown {
-        color: #333;
+        color: #111;
         font-size: 1.05rem;
+        background-color: rgba(240, 240, 240, 0.75);
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
     }
 
     textarea, input, select {
         border-radius: 12px !important;
         padding: 0.5rem;
+        background-color: rgba(255,255,255,0.9);
     }
 
     .stButton button {
