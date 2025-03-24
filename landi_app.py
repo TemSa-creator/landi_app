@@ -17,6 +17,16 @@ option = st.selectbox(
 if option != "Bitte wählen":
     st.subheader("2️⃣ Erzähl mir mehr über dein Projekt")
 
+    st.subheader("🔗 Dein passendes Website-Tool")
+
+    if option == "Systeme.io":
+        st.markdown("🔗 [Hier geht’s zu Systeme.io](https://systeme.io?ref=dein-affiliate-link) – Starte kostenlos!")
+    elif option == "Carrd":
+        st.markdown("🔗 [Carrd Website erstellen](https://carrd.co) – Schnell & minimalistisch.")
+    elif option == "Dorik":
+        st.markdown("🔗 [Dorik testen](https://dorik.com) – Moderne Baukasten-Website.")
+
+
     # Eingaben vom Nutzer
     zielgruppe = st.text_input("🧑‍🤝‍🧑 Wer ist deine Zielgruppe?")
     angebot = st.text_input("💡 Was bietest du an?")
@@ -61,6 +71,12 @@ Starte jetzt ➜ Button
 """)
 
         st.info("✅ Du kannst den Text einfach kopieren und in dein Website-Tool einfügen.")
+        # Copy-Textfeld
+        st.markdown("### 📋 Text kopieren oder speichern")
+        copy_text = st.text_area("Dein generierter Text:", value=f"Headline:\nSo hilfst du {zielgruppe}, mit {angebot} in nur wenigen Tagen ihr Ziel zu erreichen.\n\nCTA:\n👉 Jetzt kostenlos starten", height=150)
+
+        # Download als Textdatei
+        st.download_button("📥 Als .txt herunterladen", data=copy_text, file_name="website-text.txt")
 
 # Fußbereich
 st.markdown("---")
