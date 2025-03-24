@@ -41,8 +41,8 @@ st.markdown(
         color: #000 !important;
     }
 
-    .stMarkdown, .stText, .stSubheader, .stCaption, .stSuccess, .stInfo, .stDownloadButton, .stLinkButton, .stCode, .css-1cpxqw2 {
-        color: #000 !important;
+    .stMarkdown, .stText, .stSubheader, .stCaption, .stSuccess, .stInfo, .stDownloadButton, .stLinkButton, .stCode, .css-1cpxqw2, .css-1v0mbdj, .css-10trblm, .css-1y4p8pa, .css-1r6slb0, .css-1c7y2kd {
+        color: #000000 !important;
     }
 
     .stButton button, .stDownloadButton button, .stLinkButton button {
