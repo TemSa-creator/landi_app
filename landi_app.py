@@ -36,13 +36,19 @@ st.markdown(
 
     .stTextInput > div > input,
     .stSelectbox > div,
-    .stTextArea > div > textarea {
-        background-color: #fff;
-        color: #000 !important;
+    .stTextArea > div > textarea,
+    .css-qrbaxs, .css-1cpxqw2, .css-1v0mbdj, .css-10trblm, .css-1y4p8pa, .css-1r6slb0, .css-1c7y2kd,
+    .css-1aehpvj, .css-1kyxreq, .css-1fcdlh3 {
+        background-color: #fff !important;
+        color: #000000 !important;
     }
 
-    .stMarkdown, .stText, .stSubheader, .stCaption, .stSuccess, .stInfo, .stDownloadButton, .stLinkButton, .stCode, .css-1cpxqw2, .css-1v0mbdj, .css-10trblm, .css-1y4p8pa, .css-1r6slb0, .css-1c7y2kd {
+    label {
         color: #000000 !important;
+    }
+
+    .stMarkdown, .stText, .stSubheader, .stCaption, .stSuccess, .stInfo, .stDownloadButton, .stLinkButton, .stCode {
+        color: #000 !important;
     }
 
     .stButton button, .stDownloadButton button, .stLinkButton button {
