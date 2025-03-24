@@ -3,8 +3,26 @@ import streamlit as st
 # Seitentitel & Layout
 st.set_page_config(page_title="Landi – Dein Website-Bot", layout="centered")
 
+# Hintergrundbild mit CSS setzen
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-image: url("https://i.postimg.cc/nrk0fr2z/DALL-E-2025-03-03-09-12-01-A-small-cute-AI-robot-working-in-an-office-with-big-expressive-eyes-a.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
 st.title("👋 Willkommen bei Landi – deinem KI-Homepage-Bot")
 st.markdown("Erstelle in wenigen Sekunden eine verkaufsstarke Website für dein Business 💡")
+st.markdown("🚀 [Eigene Verkaufsseite mit Tentary erstellen](https://www.tentary.com/?ref=dein-affiliate-link)")
 
 # Tool-Auswahl
 st.subheader("1️⃣ Wähle dein Website-Tool")
