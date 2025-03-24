@@ -21,3 +21,23 @@ elif option == "Dorik":
 
 if option != "Bitte wählen":
     st.info("👉 Du kannst die Texte einfach kopieren und in dein Website-Tool einfügen.")
+if option != "Bitte wählen":
+    st.subheader("Erzähl mir mehr über dein Projekt 👇")
+
+    zielgruppe = st.text_input("Wer ist deine Zielgruppe?")
+    angebot = st.text_input("Was bietest du an?")
+    tonfall = st.selectbox("Wie soll der Text klingen?", ["locker", "seriös", "emotional", "inspirierend"])
+
+    if zielgruppe and angebot:
+        st.markdown("### ✨ Hier ist dein Vorschlag:")
+
+        if option == "Systeme.io":
+            st.code(f"Headline: So hilfst du {zielgruppe}, mit {angebot} in nur wenigen Tagen ihr Ziel zu erreichen.\nCTA: Jetzt kostenlos starten ➜")
+
+        elif option == "Carrd":
+            st.code(f"<h1>{angebot} für {zielgruppe}</h1>\n<p>In einem {tonfall} Stil erklärt – modern, einfach, wirkungsvoll.</p>")
+
+        elif option == "Dorik":
+            st.code(f"Section 1: Wer bist du & wie hilfst du {zielgruppe}\nSection 2: Dein Angebot: {angebot}\nSection 3: Jetzt starten ➜ Button")
+
+        st.info("✅ Du kannst die Texte jetzt kopieren oder direkt in dein Website-Tool einfügen.")
