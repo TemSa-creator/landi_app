@@ -17,7 +17,7 @@ st.markdown(
 
     /* Transparenter Bereich mit Stil */
     .main > div {
-        background-color: rgba(255, 255, 255, 0.85);
+        background-color: rgba(245, 245, 245, 0.85); /* zartes Grau */
         padding: 2rem;
         border-radius: 20px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -73,7 +73,7 @@ if option != "Bitte wählen":
     st.subheader("2️⃣ Erzähl mir mehr über dein Projekt")
 
     # Eingaben vom Nutzer
-    zielgruppe = st.text_input("🧑‍🧑‍ Wer ist deine Zielgruppe?")
+    zielgruppe = st.text_input("🧑‍🤝‍🧑 Wer ist deine Zielgruppe?")
     angebot = st.text_input("💡 Was bietest du an?")
     tonfall = st.selectbox("🎯 Wie soll der Text klingen?", ["locker", "seriös", "emotional", "inspirierend"])
 
@@ -112,7 +112,7 @@ Section 2 – Warum du?
 Weil ich einen {tonfall} Ansatz habe, der wirkt.
 
 Section 3 – Call-to-Action:
-Starte jetzt ➔ Button
+Starte jetzt ➜ Button
 """)
 
         st.info("✅ Du kannst den Text einfach kopieren und in dein Website-Tool einfügen.")
@@ -120,7 +120,7 @@ Starte jetzt ➔ Button
         # Copy-Textfeld + Download
         st.markdown("### 📋 Text kopieren oder speichern")
         copy_text = st.text_area("Dein generierter Text:", value=f"Headline:\nSo hilfst du {zielgruppe}, mit {angebot} in nur wenigen Tagen ihr Ziel zu erreichen.\n\nCTA:\n👉 Jetzt kostenlos starten", height=150)
-        st.download_button("📅 Als .txt herunterladen", data=copy_text, file_name="website-text.txt")
+        st.download_button("📥 Als .txt herunterladen", data=copy_text, file_name="website-text.txt")
 
         # Tentary Empfehlung
         st.markdown("---")
