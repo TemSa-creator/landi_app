@@ -72,7 +72,7 @@ with right:
     st.subheader("1️⃣ Wähle dein Website-Tool")
     option = st.selectbox(
         "Mit welchem Website-Baukasten möchtest du arbeiten?",
-        ["Bitte wählen", "Systeme.io", "Carrd", "Dorik"]
+        ["Bitte wählen", "Systeme.io", "Carrd", "Dorik", "Tentary"]
     )
 
     if option != "Bitte wählen":
@@ -119,6 +119,19 @@ Section 3 – Call-to-Action:
 Starte jetzt ➜ Button
 """)
 
+            elif option == "Tentary":
+                st.success("Tentary – Verkaufsseiten & Mitgliederbereiche für digitale Produkte")
+                st.code(f"""
+Headline:
+Erreiche {zielgruppe} mit deinem {angebot} auf einer smarten Verkaufsseite.
+
+Subheadline:
+Nutze einen {tonfall} Aufbau, der konvertiert.
+
+CTA:
+🚀 Starte jetzt mit Tentary
+""")
+
             st.info("✅ Du kannst den Text einfach kopieren und in dein Website-Tool einfügen.")
 
             st.markdown("### 📋 Text kopieren oder speichern")
@@ -126,11 +139,51 @@ Starte jetzt ➜ Button
             st.download_button("📥 Als .txt herunterladen", data=copy_text, file_name="website-text.txt")
 
             st.markdown("---")
+            st.markdown("### 📄 Impressum, Datenschutz & AGBs")
+            st.markdown("Du kannst die Vorlagen einfach anpassen – ersetze nur deine persönlichen Angaben:")
+
+            impressum = """
+Impressum
+Angaben gemäß § 5 TMG:
+Max Mustermann
+Musterstraße 123
+12345 Musterstadt
+Deutschland
+E-Mail: max@example.com
+Telefon: +49 123 4567890
+"""
+            datenschutz = """
+Datenschutzerklärung
+Wir nehmen den Schutz deiner persönlichen Daten sehr ernst. Personenbezogene Daten werden vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften behandelt.
+
+Verantwortlich:
+Max Mustermann, max@example.com
+"""
+            agb = """
+Allgemeine Geschäftsbedingungen (AGB)
+1. Geltungsbereich: Diese AGB gelten für alle Bestellungen über unseren Online-Shop.
+2. Vertragspartner: Der Kaufvertrag kommt zustande mit Max Mustermann.
+... (weiter anpassbar)
+"""
+
+            st.text_area("📌 Impressum (bitte anpassen)", value=impressum, height=150)
+            st.text_area("📌 Datenschutzerklärung (bitte anpassen)", value=datenschutz, height=200)
+            st.text_area("📌 AGBs (bitte anpassen)", value=agb, height=200)
+
+            st.markdown("---")
             st.markdown("### 🛒 Du willst deine Website oder dein Produkt verkaufen?")
             st.markdown("👉 Dann brauchst du eine einfache Verkaufsseite mit Bezahlfunktion – ganz ohne Technik-Stress.")
-            st.markdown("**Ich empfehle dir Tentary:** Schnell, easy & ideal für digitale Produkte, Kurse und Bots!")
-            st.link_button("🚀 Jetzt mit Tentary starten", "https://www.tentary.com/?ref=DEIN-AFFILIATE-LINK")
-            st.success("💡 BONUS: Wenn du Tentary über meinen Link nutzt, bekommst du eine exklusive Bot-Verkaufsseite als Vorlage von mir – gratis!")
+            st.markdown("**Wähle dein Tool & starte direkt:**")
+
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.link_button("🔗 Systeme.io", "https://systeme.io/?ref=DEIN-AFFILIATE-LINK")
+            with col2:
+                st.link_button("🔗 Carrd", "https://carrd.co/")
+            with col3:
+                st.link_button("🔗 Tentary", "https://www.tentary.com/?ref=DEIN-AFFILIATE-LINK")
+
+            st.success("💡 BONUS: Wenn du eines der Tools über meinen Link nutzt, bekommst du eine exklusive Bot-Verkaufsseite als Vorlage von mir – gratis!")
 
     st.markdown("---")
     st.caption("Made with ❤️ by Sarah – powered by KI & Verkaufspsychologie")
