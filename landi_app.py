@@ -1,4 +1,5 @@
 import streamlit as st
+import urllib.parse
 
 st.set_page_config(page_title="Landi – Dein Website-Bot", layout="wide")
 
@@ -49,6 +50,11 @@ st.markdown(
         color: #000000 !important;
     }
 
+    .stAlert .stAlert-success {
+        background-color: #e6f4ea !important;
+        color: #000000 !important;
+    }
+
     .stButton button, .stDownloadButton button, .stLinkButton button {
         border-radius: 8px;
         font-weight: bold;
@@ -85,87 +91,37 @@ with right:
         if zielgruppe and angebot:
             st.subheader("3️⃣ Dein fertiger Website-Text")
 
-            if option == "Systeme.io":
-                st.success("Systeme.io – Funnel-fokussierter Aufbau")
-                st.code(f"""
+            headline = f"So hilfst du {zielgruppe}, mit {angebot} in nur wenigen Tagen ihr Ziel zu erreichen."
+            subheadline = f"Verwende unser {tonfall} System, um Ergebnisse zu erzielen, die wirklich zählen."
+            cta = "👉 Jetzt kostenlos starten"
+
+            st.code(f"""
 Headline:
-So hilfst du {zielgruppe}, mit {angebot} in nur wenigen Tagen ihr Ziel zu erreichen.
+{headline}
 
 Subheadline:
-Verwende unser {tonfall} System, um Ergebnisse zu erzielen, die wirklich zählen.
+{subheadline}
 
 Call-to-Action:
-👉 Jetzt kostenlos starten
+{cta}
 """)
-
-            elif option == "Carrd":
-                st.success("Carrd – Minimalistische Onepager-Struktur")
-                st.code(f"""
-<h1>{angebot} für {zielgruppe}</h1>
-<p>{tonfall.capitalize()} erklärt, damit deine Zielgruppe sofort versteht, worum es geht.</p>
-<button>Jetzt starten</button>
-""")
-
-            elif option == "Dorik":
-                st.success("Dorik – Moderne Website mit Sektionen")
-                st.code(f"""
-Section 1 – Über dich:
-Ich helfe {zielgruppe}, durch {angebot} schneller ans Ziel zu kommen.
-
-Section 2 – Warum du?
-Weil ich einen {tonfall} Ansatz habe, der wirkt.
-
-Section 3 – Call-to-Action:
-Starte jetzt ➜ Button
-""")
-
-            elif option == "Tentary":
-                st.success("Tentary – Verkaufsseiten & Mitgliederbereiche für digitale Produkte")
-                st.code(f"""
-Headline:
-Erreiche {zielgruppe} mit deinem {angebot} auf einer smarten Verkaufsseite.
-
-Subheadline:
-Nutze einen {tonfall} Aufbau, der konvertiert.
-
-CTA:
-🚀 Starte jetzt mit Tentary
-""")
-
-            st.info("✅ Du kannst den Text einfach kopieren und in dein Website-Tool einfügen.")
 
             st.markdown("### 📋 Text kopieren oder speichern")
-            copy_text = st.text_area("Dein generierter Text:", value=f"Headline:\nSo hilfst du {zielgruppe}, mit {angebot} in nur wenigen Tagen ihr Ziel zu erreichen.\n\nCTA:\n👉 Jetzt kostenlos starten", height=150)
-            st.download_button("📥 Als .txt herunterladen", data=copy_text, file_name="website-text.txt")
+            full_text = f"Headline:\n{headline}\n\nSubheadline:\n{subheadline}\n\nCTA:\n{cta}"
+            st.text_area("Dein generierter Text:", value=full_text, height=150)
+            st.download_button("📥 Als .txt herunterladen", data=full_text, file_name="website-text.txt")
 
             st.markdown("---")
             st.markdown("### 📄 Impressum, Datenschutz & AGBs")
-            st.markdown("Du kannst die Vorlagen einfach anpassen – ersetze nur deine persönlichen Angaben:")
-
             impressum = """
-Impressum
-Angaben gemäß § 5 TMG:
-Max Mustermann
-Musterstraße 123
-12345 Musterstadt
-Deutschland
-E-Mail: max@example.com
-Telefon: +49 123 4567890
+Impressum\nAngaben gemäß § 5 TMG:\nMax Mustermann\nMusterstraße 123\n12345 Musterstadt\nDeutschland\nE-Mail: max@example.com\nTelefon: +49 123 4567890
 """
             datenschutz = """
-Datenschutzerklärung
-Wir nehmen den Schutz deiner persönlichen Daten sehr ernst. Personenbezogene Daten werden vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften behandelt.
-
-Verantwortlich:
-Max Mustermann, max@example.com
+Datenschutzerklärung\nWir nehmen den Schutz deiner persönlichen Daten sehr ernst. Personenbezogene Daten werden vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften behandelt.\n\nVerantwortlich:\nMax Mustermann, max@example.com
 """
             agb = """
-Allgemeine Geschäftsbedingungen (AGB)
-1. Geltungsbereich: Diese AGB gelten für alle Bestellungen über unseren Online-Shop.
-2. Vertragspartner: Der Kaufvertrag kommt zustande mit Max Mustermann.
-... (weiter anpassbar)
+Allgemeine Geschäftsbedingungen (AGB)\n1. Geltungsbereich: Diese AGB gelten für alle Bestellungen über unseren Online-Shop.\n2. Vertragspartner: Der Kaufvertrag kommt zustande mit Max Mustermann.\n... (weiter anpassbar)
 """
-
             st.text_area("📌 Impressum (bitte anpassen)", value=impressum, height=150)
             st.text_area("📌 Datenschutzerklärung (bitte anpassen)", value=datenschutz, height=200)
             st.text_area("📌 AGBs (bitte anpassen)", value=agb, height=200)
@@ -173,17 +129,20 @@ Allgemeine Geschäftsbedingungen (AGB)
             st.markdown("---")
             st.markdown("### 🛒 Du willst deine Website oder dein Produkt verkaufen?")
             st.markdown("👉 Dann brauchst du eine einfache Verkaufsseite mit Bezahlfunktion – ganz ohne Technik-Stress.")
-            st.markdown("**Wähle dein Tool & starte direkt:**")
+            st.markdown("**Wähle dein Tool & starte direkt mit vorausgefüllter Vorlage:**")
 
-            col1, col2, col3 = st.columns(3)
+            encoded_headline = urllib.parse.quote(headline)
+            encoded_sub = urllib.parse.quote(subheadline)
+            encoded_cta = urllib.parse.quote(cta)
+
+            carrd_url = f"https://your-carrd-template.carrd.co/?headline={encoded_headline}&subheadline={encoded_sub}&cta={encoded_cta}"
+            tentary_url = f"https://www.tentary.com/create?headline={encoded_headline}&sub={encoded_sub}&cta={encoded_cta}"
+
+            col1, col2 = st.columns(2)
             with col1:
-                st.link_button("🔗 Systeme.io", "https://systeme.io/?ref=DEIN-AFFILIATE-LINK")
+                st.link_button("🔗 Carrd Auto-Template", carrd_url)
             with col2:
-                st.link_button("🔗 Carrd", "https://carrd.co/")
-            with col3:
-                st.link_button("🔗 Tentary", "https://www.tentary.com/?ref=DEIN-AFFILIATE-LINK")
-
-            st.success("💡 BONUS: Wenn du eines der Tools über meinen Link nutzt, bekommst du eine exklusive Bot-Verkaufsseite als Vorlage von mir – gratis!")
+                st.link_button("🔗 Tentary Auto-Template", tentary_url)
 
     st.markdown("---")
     st.caption("Made with ❤️ by Sarah – powered by KI & Verkaufspsychologie")
