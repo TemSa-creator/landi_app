@@ -34,28 +34,26 @@ st.markdown(
         margin-bottom: 2rem;
     }
 
-    .stTextInput > div > input,
-    .stSelectbox > div,
-    .stTextArea > div > textarea,
-    .css-qrbaxs, .css-1cpxqw2, .css-1v0mbdj, .css-10trblm, .css-1y4p8pa, .css-1r6slb0, .css-1c7y2kd,
-    .css-1aehpvj, .css-1kyxreq, .css-1fcdlh3 {
-        background-color: #fff !important;
+    label, .css-1cpxqw2, .css-1v0mbdj, .css-10trblm, .css-1y4p8pa, .css-1r6slb0, .css-1c7y2kd, .css-1aehpvj, .css-1kyxreq, .css-1fcdlh3 {
         color: #000000 !important;
     }
 
-    label {
+    .stSelectbox > div,
+    .stTextInput > div > input,
+    .stTextArea > div > textarea {
+        background-color: #ffffff !important;
         color: #000000 !important;
     }
 
     .stMarkdown, .stText, .stSubheader, .stCaption, .stSuccess, .stInfo, .stDownloadButton, .stLinkButton, .stCode {
-        color: #000 !important;
+        color: #000000 !important;
     }
 
     .stButton button, .stDownloadButton button, .stLinkButton button {
         border-radius: 8px;
         font-weight: bold;
         padding: 0.6rem 1.2rem;
-        color: #fff !important;
+        color: #ffffff !important;
     }
     </style>
     """,
@@ -135,4 +133,4 @@ Starte jetzt ➜ Button
             st.success("💡 BONUS: Wenn du Tentary über meinen Link nutzt, bekommst du eine exklusive Bot-Verkaufsseite als Vorlage von mir – gratis!")
 
     st.markdown("---")
-    st.caption("Made with ❤️ by Sarah – powered by KI & Verkaufspsychologie")
+    st.caption("Made with ❤️ by Sarah – powered b
