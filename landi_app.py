@@ -133,4 +133,4 @@ Starte jetzt ➜ Button
             st.success("💡 BONUS: Wenn du Tentary über meinen Link nutzt, bekommst du eine exklusive Bot-Verkaufsseite als Vorlage von mir – gratis!")
 
     st.markdown("---")
-    st.caption("Made with ❤️ by Sarah – powered b
+    st.caption("Made with ❤️ by Sarah – powered by KI & Verkaufspsychologie")
