@@ -129,20 +129,16 @@ Allgemeine Geschäftsbedingungen (AGB)\n1. Geltungsbereich: Diese AGB gelten fü
             st.markdown("---")
             st.markdown("### 🛒 Du willst deine Website oder dein Produkt verkaufen?")
             st.markdown("👉 Dann brauchst du eine einfache Verkaufsseite mit Bezahlfunktion – ganz ohne Technik-Stress.")
-            st.markdown("**Wähle dein Tool & starte direkt mit vorausgefüllter Vorlage:**")
+            st.markdown("**Wähle dein Tool & starte direkt mit Vorlage:**")
 
-            encoded_headline = urllib.parse.quote(headline)
-            encoded_sub = urllib.parse.quote(subheadline)
-            encoded_cta = urllib.parse.quote(cta)
-
-            carrd_url = f"https://your-carrd-template.carrd.co/?headline={encoded_headline}&subheadline={encoded_sub}&cta={encoded_cta}"
-            tentary_url = f"https://www.tentary.com/create?headline={encoded_headline}&sub={encoded_sub}&cta={encoded_cta}"
+            carrd_url = "https://carrd.co/build"
+            tentary_url = "https://tentary.com/create"
 
             col1, col2 = st.columns(2)
             with col1:
-                st.link_button("🔗 Carrd Auto-Template", carrd_url)
+                st.link_button("🔗 Carrd öffnen", carrd_url)
             with col2:
-                st.link_button("🔗 Tentary Auto-Template", tentary_url)
+                st.link_button("🔗 Tentary öffnen", tentary_url)
 
     st.markdown("---")
     st.caption("Made with ❤️ by Sarah – powered by KI & Verkaufspsychologie")
