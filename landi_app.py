@@ -13,7 +13,7 @@ st.markdown(
     }
 
     .left-column {
-        background-image: url('https://i.postimg.cc/nrk0fr2z/DALL-E-2025-03-03-09-12-01-A-small-cute-AI-robot-working-in-an-office-with-big-expressive-eyes-a.jpg');
+        background-image: url('https://i.postimg.cc/FF8V1BLg/Design-ohne-Titel-2.gif');
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
