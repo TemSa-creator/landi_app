@@ -72,33 +72,49 @@ with left:
 
 with right:
     st.markdown("<div class='main-title'>👋 Willkommen bei Landi – deinem KI-Website-Bot</div>", unsafe_allow_html=True)
-    st.markdown("<div class='main-subtitle'>Erstelle automatisch eine professionelle Verkaufsseite mit Abo-Anbindung, KI-Bots & mehr 💡</div>", unsafe_allow_html=True)
+    st.markdown("<div class='main-subtitle'>Erstelle automatisch eine professionelle Verkaufsseite, Shop oder Website mit Domain 💡</div>", unsafe_allow_html=True)
 
-    st.subheader("1️⃣ Wähle dein Website-Tool")
-    option = st.selectbox(
-        "Mit welchem Website-Baukasten möchtest du arbeiten?",
-        ["Bitte wählen", "Systeme.io", "Carrd", "Dorik", "Tentary"]
-    )
+    st.subheader("1️⃣ Was möchtest du bauen?")
+    projekt_typ = st.selectbox("Wähle den Website-Typ:", ["Bitte wählen", "Landingpage", "Website", "Shop"])
 
-    if option != "Bitte wählen":
+    if projekt_typ != "Bitte wählen":
         st.subheader("2️⃣ Erkläre dein Projekt")
 
         zielgruppe = st.text_input("🧑‍🤝‍🧑 Wer ist deine Zielgruppe?")
         angebot = st.text_input("💡 Was bietest du an?")
         tonfall = st.selectbox("🌟 Wie soll der Text klingen?", ["locker", "seriös", "emotional", "inspirierend"])
 
+        produkte = []
+        if projekt_typ == "Shop":
+            st.subheader("🍬 Produkte hinzufügen")
+            for i in range(1, 4):
+                produktname = st.text_input(f"Produkt {i} Name", key=f"produkt_{i}")
+                produktpreis = st.text_input(f"Produkt {i} Preis (z. B. 29,99 €)", key=f"preis_{i}")
+                if produktname and produktpreis:
+                    produkte.append((produktname, produktpreis))
+
+        domain_typ = st.radio("🌐 Möchtest du eine eigene Domain verwenden oder eine Domain kaufen?", ["Eigene Domain", "Domain über externen Anbieter kaufen"])
+        if domain_typ == "Eigene Domain":
+            benutzer_domain = st.text_input("🔑 Deine Wunsch-Domain (z. B. meine-seite.de)")
+        else:
+            st.markdown("Du kannst eine Domain schnell & einfach bei [united-domains.de](https://www.united-domains.de/) prüfen und kaufen.")
+
         if zielgruppe and angebot:
             st.subheader("3️⃣ Vorschau deiner Website")
 
             headline = f"So hilfst du {zielgruppe}, mit {angebot} in nur wenigen Tagen ihr Ziel zu erreichen."
             subheadline = f"Verwende unser {tonfall} System, um Ergebnisse zu erzielen, die wirklich zählen."
-            cta = "👉 Jetzt Abo starten"
+            cta = "Jetzt starten"
 
-            with st.container():
-                st.markdown("#### 💻 Vorschau deiner Seite:")
-                st.markdown(f"### {headline}")
-                st.markdown(f"<p style='color:#2f4d8c;font-size:18px;'>{subheadline}</p>", unsafe_allow_html=True)
-                st.markdown(f"<a href='https://www.checkout-ds24.com/product/599133' target='_blank'><button style='background-color:#2f4d8c;border:none;color:white;padding:10px 20px;border-radius:6px;margin-top:10px;'>Jetzt Abo starten</button></a>", unsafe_allow_html=True)
+            st.markdown("#### 💻 Vorschau deiner Seite:")
+            st.markdown(f"### {headline}")
+            st.markdown(f"<p style='color:#2f4d8c;font-size:18px;'>{subheadline}</p>", unsafe_allow_html=True)
+            st.markdown(f"<button style='background-color:#2f4d8c;border:none;color:white;padding:10px 20px;border-radius:6px;margin-top:10px;'>{cta}</button>", unsafe_allow_html=True)
+
+            if projekt_typ == "Shop" and produkte:
+                st.markdown("#### 🍬 Produkte in deinem Shop:")
+                for name, preis in produkte:
+                    st.markdown(f"**{name}** – {preis}")
 
             if st.button("✅ Ja, diesen Vorschlag übernehmen"):
                 st.success("Super! Du kannst den Text jetzt unten speichern oder kopieren.")
@@ -125,16 +141,11 @@ Allgemeine Geschäftsbedingungen (AGB)\n1. Geltungsbereich: Diese AGB gelten fü
 
             st.markdown("---")
             st.markdown("### 🛎 Jetzt verkaufen oder starten?")
-            st.markdown("Starte direkt mit deinem Abo-Link oder nutze einen Website-Baukasten deiner Wahl.")
-
             col1, col2 = st.columns(2)
             with col1:
                 st.link_button("🔗 Carrd öffnen", "https://carrd.co/build")
             with col2:
                 st.link_button("🔗 Tentary öffnen", "https://tentary.com/create")
-
-            st.markdown("### 🌐 Oder direkt loslegen:")
-            st.link_button("🚀 Abo jetzt starten (Digistore24)", "https://www.checkout-ds24.com/product/599133")
 
     st.markdown("---")
     st.caption("Made with ❤️ by Sarah – powered by KI & Verkaufspsychologie")
