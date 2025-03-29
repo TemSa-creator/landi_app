@@ -122,14 +122,14 @@ with right:
                 st.success("Super! Du kannst den Text jetzt unten speichern oder kopieren.")
 
             st.markdown("### 📋 Text kopieren oder speichern")
-            full_text = f"Headline:
+            full_text = f"""Headline:
 {headline}
 
 Subheadline:
 {subheadline}
 
 CTA:
-{cta}"
+{cta}"""
             st.text_area("Dein generierter Text:", value=full_text, height=150)
             st.download_button("📅 Als .txt herunterladen", data=full_text, file_name="website-text.txt")
 
