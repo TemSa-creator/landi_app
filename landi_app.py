@@ -171,4 +171,4 @@ Allgemeine Geschäftsbedingungen (AGB)
                 st.link_button("🔗 Tentary öffnen", "https://tentary.com/create")
 
     st.markdown("---")
-    st.caption("Made with ❤️ by Sarah – powered by KI & Verkaufspsychologie")..
+st.caption("Made with ❤️ by Sarah – powered by KI & Verkaufspsychologie")
