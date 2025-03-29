@@ -60,6 +60,10 @@ st.markdown(
     .stLinkButton button:hover, .stButton button:hover {
         background-color: #1e3364;
     }
+    .stRadio > div > label {
+        color: #000000 !important;
+    }
+
     </style>
     """,
     unsafe_allow_html=True
