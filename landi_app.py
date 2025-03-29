@@ -64,6 +64,10 @@ st.markdown(
         color: #000000 !important;
     }
 
+    .stRadio div[role="radiogroup"] > label > div {
+        color: #000000 !important;
+    }
+
     </style>
     """,
     unsafe_allow_html=True
