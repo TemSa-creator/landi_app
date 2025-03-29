@@ -3,14 +3,14 @@ import urllib.parse
 
 st.set_page_config(page_title="Landi – Dein Website-Bot", layout="wide")
 
-# Custom CSS für blaues, klares Design
+# Custom CSS für klares schwarzes Design
 st.markdown(
     """
     <style>
     .stApp {
         font-family: 'Segoe UI', sans-serif;
         background-color: #f4f8fc;
-        color: #0f1e3c !important;
+        color: #000000 !important;
     }
 
     .left-column {
@@ -25,25 +25,25 @@ st.markdown(
     .main-title {
         font-size: 2.5rem;
         font-weight: 700;
-        color: #0f1e3c !important;
+        color: #000000 !important;
         margin-bottom: 0.5rem;
     }
 
     .main-subtitle {
         font-size: 1.2rem;
-        color: #2f4d8c !important;
+        color: #000000 !important;
         margin-bottom: 2rem;
     }
 
     label, .stSelectbox label, .stTextInput label, .stTextArea label {
-        color: #0f1e3c !important;
+        color: #000000 !important;
     }
 
     .stSelectbox > div,
     .stTextInput > div > input,
     .stTextArea > div > textarea {
         background-color: #ffffff !important;
-        color: #0f1e3c !important;
+        color: #000000 !important;
         border-radius: 6px;
         border: 1px solid #c6d4f2;
     }
@@ -93,11 +93,13 @@ with right:
                 if produktname and produktpreis:
                     produkte.append((produktname, produktpreis))
 
-        domain_typ = st.radio("🌐 Möchtest du eine eigene Domain verwenden oder eine Domain kaufen?", ["Eigene Domain", "Domain über externen Anbieter kaufen"])
+        domain_typ = st.radio("🌐 Welche Domain soll verwendet werden?", ["Eigene Domain", "Domain über externen Anbieter kaufen", "Automatisch zugewiesene Domain nutzen"])
         if domain_typ == "Eigene Domain":
             benutzer_domain = st.text_input("🔑 Deine Wunsch-Domain (z. B. meine-seite.de)")
-        else:
+        elif domain_typ == "Domain über externen Anbieter kaufen":
             st.markdown("Du kannst eine Domain schnell & einfach bei [united-domains.de](https://www.united-domains.de/) prüfen und kaufen.")
+        else:
+            st.markdown("✅ Dir wird automatisch eine Domain zugewiesen, z. B. `landi-projekt123.webseite.ai`")
 
         if zielgruppe and angebot:
             st.subheader("3️⃣ Vorschau deiner Website")
@@ -108,7 +110,7 @@ with right:
 
             st.markdown("#### 💻 Vorschau deiner Seite:")
             st.markdown(f"### {headline}")
-            st.markdown(f"<p style='color:#2f4d8c;font-size:18px;'>{subheadline}</p>", unsafe_allow_html=True)
+            st.markdown(f"<p style='color:#000000;font-size:18px;'>{subheadline}</p>", unsafe_allow_html=True)
             st.markdown(f"<button style='background-color:#2f4d8c;border:none;color:white;padding:10px 20px;border-radius:6px;margin-top:10px;'>{cta}</button>", unsafe_allow_html=True)
 
             if projekt_typ == "Shop" and produkte:
