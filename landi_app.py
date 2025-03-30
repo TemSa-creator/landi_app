@@ -119,50 +119,42 @@ with right:
             st.markdown("#### 💻 Vorschau deiner Seite:")
             st.markdown(f"### {headline}")
             st.markdown(f"<p style='color:#000000;font-size:18px;'>{subheadline}</p>", unsafe_allow_html=True)
-            if st.button("🚀 Jetzt starten"):
-                show_preview = True
 
-            if projekt_typ == "Shop" and produkte:
-                st.markdown("#### 🍬 Produkte in deinem Shop:")
-                for name, preis in produkte:
-                    st.markdown(f"**{name}** – {preis}")
+            html_vorschau = f"""
+            <!DOCTYPE html>
+            <html lang='de'>
+            <head>
+                <meta charset='UTF-8'>
+                <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                <title>{headline}</title>
+                <style>
+                    body {{ font-family: 'Segoe UI', sans-serif; background: #f9f9f9; color: #000; padding: 2rem; }}
+                    h1 {{ color: #2f4d8c; }}
+                    .cta {{ background-color: #2f4d8c; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; display: inline-block; margin-top: 1rem; }}
+                    .produkte {{ margin-top: 2rem; }}
+                    .produkte h3 {{ margin-bottom: 0.5rem; }}
+                    .produkte ul {{ list-style: none; padding: 0; }}
+                    .produkte li {{ margin-bottom: 0.5rem; }}
+                    footer {{ margin-top: 4rem; font-size: 0.8rem; color: #555; }}
+                </style>
+            </head>
+            <body>
+                <h1>{headline}</h1>
+                <p>{subheadline}</p>
+                <a class='cta' href='#'>{cta}</a>
+                {f'<div class="produkte"><h3>Unsere Produkte:</h3><ul>' + ''.join([f'<li><strong>{n}</strong> – {p}</li>' for n, p in produkte]) + '</ul></div>' if produkte else ''}
+                <footer>
+                    <p>Impressum: Max Mustermann – max@example.com</p>
+                    <p>Datenschutz & AGBs bitte individuell ergänzen.</p>
+                </footer>
+            </body>
+            </html>
+            """
+            st.markdown("---")
+            st.markdown("### 🌐 Vorschau deiner fertigen Website")
+            st.code(html_vorschau, language="html")
+            st.download_button("💾 HTML-Datei herunterladen", data=html_vorschau, file_name="landi-website.html")
 
-            if st.button("✅ Ja, diesen Vorschlag übernehmen"):
-                html_vorschau = f"""
-                <!DOCTYPE html>
-                <html lang='de'>
-                <head>
-                    <meta charset='UTF-8'>
-                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-                    <title>{headline}</title>
-                    <style>
-                        body {{ font-family: 'Segoe UI', sans-serif; background: #f9f9f9; color: #000; padding: 2rem; }}
-                        h1 {{ color: #2f4d8c; }}
-                        .cta {{ background-color: #2f4d8c; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; display: inline-block; margin-top: 1rem; }}
-                        .produkte {{ margin-top: 2rem; }}
-                        .produkte h3 {{ margin-bottom: 0.5rem; }}
-                        .produkte ul {{ list-style: none; padding: 0; }}
-                        .produkte li {{ margin-bottom: 0.5rem; }}
-                        footer {{ margin-top: 4rem; font-size: 0.8rem; color: #555; }}
-                    </style>
-                </head>
-                <body>
-                    <h1>{headline}</h1>
-                    <p>{subheadline}</p>
-                    <a class='cta' href='#'>{cta}</a>
-                    {f'<div class="produkte"><h3>Unsere Produkte:</h3><ul>' + ''.join([f'<li><strong>{n}</strong> – {p}</li>' for n, p in produkte]) + '</ul></div>' if produkte else ''}
-                    <footer>
-                        <p>Impressum: Max Mustermann – max@example.com</p>
-                        <p>Datenschutz & AGBs bitte individuell ergänzen.</p>
-                    </footer>
-                </body>
-                </html>
-                """
-                st.success("Super! Hier ist deine Website-Vorschau unten als HTML-Datei.")
-                st.download_button("🌐 HTML-Datei herunterladen", data=html_vorschau, file_name="landi-website.html")
-                st.code(html_vorschau, language="html")
-
-            st.markdown("### 📋 Text kopieren oder speichern")
             full_text = f"""Headline:
 {headline}
 
