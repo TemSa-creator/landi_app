@@ -119,7 +119,8 @@ with right:
             st.markdown("#### 💻 Vorschau deiner Seite:")
             st.markdown(f"### {headline}")
             st.markdown(f"<p style='color:#000000;font-size:18px;'>{subheadline}</p>", unsafe_allow_html=True)
-            st.markdown(f"<button style='background-color:#2f4d8c;border:none;color:white;padding:10px 20px;border-radius:6px;margin-top:10px;'>{cta}</button>", unsafe_allow_html=True)
+            if st.button("🚀 Jetzt starten"):
+                show_preview = True
 
             if projekt_typ == "Shop" and produkte:
                 st.markdown("#### 🍬 Produkte in deinem Shop:")
