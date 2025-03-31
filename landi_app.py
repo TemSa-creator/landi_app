@@ -67,7 +67,6 @@ st.markdown(
     .stRadio div[role="radiogroup"] > label > div {
         color: #000000 !important;
     }
-
     </style>
     """,
     unsafe_allow_html=True
@@ -91,6 +90,9 @@ with right:
         zielgruppe = st.text_input("🧑‍🤝‍🧑 Wer ist deine Zielgruppe?")
         angebot = st.text_input("💡 Was bietest du an?")
         tonfall = st.selectbox("🌟 Wie soll der Text klingen?", ["locker", "seriös", "emotional", "inspirierend"])
+        farbe = st.color_picker("🎨 Wähle deine Hauptfarbe", "#2f4d8c")
+
+        menupunkte = st.multiselect("📂 Welche Menüpunkte brauchst du?", ["Home", "Über uns", "Leistungen", "Blog", "Kontakt", "Produkte / Shop"])
 
         produkte = []
         if projekt_typ == "Shop":
@@ -116,10 +118,6 @@ with right:
             subheadline = f"Verwende unser {tonfall} System, um Ergebnisse zu erzielen, die wirklich zählen."
             cta = "Jetzt starten"
 
-            st.markdown("#### 💻 Vorschau deiner Seite:")
-            st.markdown(f"### {headline}")
-            st.markdown(f"<p style='color:#000000;font-size:18px;'>{subheadline}</p>", unsafe_allow_html=True)
-
             html_vorschau = f"""
             <!DOCTYPE html>
             <html lang='de'>
@@ -129,83 +127,46 @@ with right:
                 <title>{headline}</title>
                 <style>
                     body {{ font-family: 'Segoe UI', sans-serif; background: #f9f9f9; color: #000; padding: 2rem; }}
-                    h1 {{ color: #2f4d8c; }}
-                    .cta {{ background-color: #2f4d8c; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; display: inline-block; margin-top: 1rem; }}
+                    h1 {{ color: {farbe}; }}
+                    .cta {{ background-color: {farbe}; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; display: inline-block; margin-top: 1rem; }}
+                    nav ul {{ display: flex; gap: 1rem; list-style: none; padding: 0; }}
+                    nav li {{ display: inline; }}
                     .produkte {{ margin-top: 2rem; }}
-                    .produkte h3 {{ margin-bottom: 0.5rem; }}
-                    .produkte ul {{ list-style: none; padding: 0; }}
-                    .produkte li {{ margin-bottom: 0.5rem; }}
                     footer {{ margin-top: 4rem; font-size: 0.8rem; color: #555; }}
                 </style>
             </head>
             <body>
+                <nav><ul>{''.join([f'<li>{punkt}</li>' for punkt in menupunkte])}</ul></nav>
                 <h1>{headline}</h1>
                 <p>{subheadline}</p>
                 <a class='cta' href='#'>{cta}</a>
                 {f'<div class="produkte"><h3>Unsere Produkte:</h3><ul>' + ''.join([f'<li><strong>{n}</strong> – {p}</li>' for n, p in produkte]) + '</ul></div>' if produkte else ''}
                 <footer>
-                    <p>Impressum: Max Mustermann – max@example.com</p>
-                    <p>Datenschutz & AGBs bitte individuell ergänzen.</p>
+                    <p><a href='#'>Impressum</a> | <a href='#'>Datenschutz</a> | <a href='#'>AGB</a></p>
                 </footer>
             </body>
             </html>
             """
-            st.markdown("---")
+
             st.markdown("### 🌐 Vorschau deiner fertigen Website")
             st.code(html_vorschau, language="html")
             st.download_button("💾 HTML-Datei herunterladen", data=html_vorschau, file_name="landi-website.html")
 
-            full_text = f"""Headline:
-{headline}
-
-Subheadline:
-{subheadline}
-
-CTA:
-{cta}"""
-            st.text_area("Dein generierter Text:", value=full_text, height=150)
-            st.download_button("📅 Als .txt herunterladen", data=full_text, file_name="website-text.txt")
-
-            st.markdown("---")
-            st.markdown("### 📄 Impressum, Datenschutz & AGBs")
-            impressum = """
-Impressum
-Angaben gemäß § 5 TMG:
-Max Mustermann
-Musterstraße 123
-12345 Musterstadt
-Deutschland
-E-Mail: max@example.com
-Telefon: +49 123 4567890
-"""
-            datenschutz = """
-Datenschutzerklärung
-Wir nehmen den Schutz deiner persönlichen Daten sehr ernst. Personenbezogene Daten werden vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften behandelt.
-
-Verantwortlich:
-Max Mustermann, max@example.com
-"""
-            agb = """
-Allgemeine Geschäftsbedingungen (AGB)
-1. Geltungsbereich: Diese AGB gelten für alle Bestellungen über unseren Online-Shop.
-2. Vertragspartner: Der Kaufvertrag kommt zustande mit Max Mustermann.
-... (weiter anpassbar)
-"""
-            st.text_area("📌 Impressum (bitte anpassen)", value=impressum, height=150)
-            st.text_area("📌 Datenschutzerklärung (bitte anpassen)", value=datenschutz, height=200)
-            st.text_area("📌 AGBs (bitte anpassen)", value=agb, height=200)
-
             st.markdown("---")
             st.markdown("### 📦 So nutzt du deine Website ganz einfach")
+
             col1, col2 = st.columns(2)
             with col1:
-    st.link_button("🔗 Carrd öffnen", "https://carrd.co/build")
-    st.markdown("👉 **So geht's:** Gehe auf Carrd, wähle ein leeres Template oder 'Landing', lösche alle Platzhalter und klicke auf ➕ → Embed → HTML. Füge dort den HTML-Code von oben ein.")
-st.markdown("👉 **So geht's:** Gehe auf Carrd, wähle ein leeres Template oder 'Landing', lösche alle Platzhalter und klicke auf ➕ → Embed → HTML. Füge dort den HTML-Code von oben ein.")
+                st.link_button("🔗 Carrd öffnen", "https://carrd.co/build")
+                st.markdown("👉 Gehe auf Carrd, wähle ein leeres Template, klicke auf ➕ → Embed → HTML & füge den Code ein.")
             with col2:
-    st.link_button("🔗 Tentary öffnen", "https://tentary.com/create")
-    st.markdown("👉 **So geht's:** In Tentary kannst du deinen HTML-Code per Editor oder Blockbaukasten einfügen. Alternativ nutzt du die integrierte Baukasten-Vorlage und ersetzt Inhalte durch deinen generierten Text.")
-st.markdown("👉 **So geht's:** In Tentary kannst du deinen HTML-Code per Editor oder Blockbaukasten einfügen. Alternativ nutzt du die integrierte Baukasten-Vorlage und ersetzt Inhalte durch deinen generierten Text.")
+                st.link_button("🔗 Tentary öffnen", "https://tentary.com/create")
+                st.markdown("👉 In Tentary HTML einfügen oder Blöcke ersetzen.")
 
-    st.markdown("---")
-    st.caption("Made with ❤️ by Sarah – powered by KI & Verkaufspsychologie")
+            st.link_button("🔗 Systeme.io starten", "https://systeme.io")
+            st.markdown("👉 Melde dich an, wähle 'Funnel' → eigene Seite → HTML-Modul einfügen.")
+
+            st.link_button("🔗 WordPress installieren", "https://wordpress.org/download/")
+            st.markdown("👉 Lade HTML hoch oder nutze Page-Builder wie Elementor (kostenpflichtig). Hosting nötig.")
+
+            st.caption("Made with ❤️ by Sarah – powered by KI & Verkaufspsychologie")
