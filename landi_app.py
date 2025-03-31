@@ -49,6 +49,9 @@ st.markdown(
     label, .stTextInput label, .stTextArea label, .stSelectbox label, .stRadio label {
         color: #000000 !important;
     }
+    label, div[data-testid="stMarkdownContainer"], .stMarkdown, .stText, .stSubheader, .stCaption, .stRadio label, .stSelectbox label, .stTextInput label, .stTextArea label {
+        color: #000000 !important;
+    }
     </style>
     """,
     unsafe_allow_html=True
