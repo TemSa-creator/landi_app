@@ -34,6 +34,12 @@ st.markdown(
         color: #000000 !important;
         margin-bottom: 2rem;
     }
+    input, textarea, select {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        border: 1px solid #000000 !important;
+        border-radius: 6px !important;
+    }
     </style>
     """,
     unsafe_allow_html=True
