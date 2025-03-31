@@ -34,39 +34,6 @@ st.markdown(
         color: #000000 !important;
         margin-bottom: 2rem;
     }
-
-    label, .stSelectbox label, .stTextInput label, .stTextArea label, .stRadio label, .css-1cpxqw2, .css-1v0mbdj, .css-1y4p8pa {
-        color: #000000 !important;
-    }
-
-    .stSelectbox > div,
-    .stTextInput > div > input,
-    .stTextArea > div > textarea {
-        background-color: #ffffff !important;
-        color: #000000 !important;
-        border-radius: 6px;
-        border: 1px solid #c6d4f2;
-    }
-
-    .stButton button, .stDownloadButton button, .stLinkButton button {
-        border-radius: 8px;
-        font-weight: 600;
-        padding: 0.6rem 1.2rem;
-        background-color: #2f4d8c;
-        color: #ffffff !important;
-        border: none;
-    }
-
-    .stLinkButton button:hover, .stButton button:hover {
-        background-color: #1e3364;
-    }
-    .stRadio > div > label {
-        color: #000000 !important;
-    }
-
-    .stRadio div[role="radiogroup"] > label > div {
-        color: #000000 !important;
-    }
     </style>
     """,
     unsafe_allow_html=True
@@ -87,21 +54,25 @@ with right:
     if projekt_typ != "Bitte wählen":
         st.subheader("2️⃣ Erkläre dein Projekt")
 
+        beschreibung = st.text_area("🧠 Beschreibe deine Wunschseite (z. B. Stil, Zielgruppe, Inhalte):")
+
         zielgruppe = st.text_input("🧑‍🤝‍🧑 Wer ist deine Zielgruppe?")
         angebot = st.text_input("💡 Was bietest du an?")
         tonfall = st.selectbox("🌟 Wie soll der Text klingen?", ["locker", "seriös", "emotional", "inspirierend"])
-        farbe = st.color_picker("🎨 Wähle deine Hauptfarbe", "#2f4d8c")
 
-        menupunkte = st.multiselect("📂 Welche Menüpunkte brauchst du?", ["Home", "Über uns", "Leistungen", "Blog", "Kontakt", "Produkte / Shop"])
+        hauptfarbe = st.color_picker("🎨 Hauptfarbe", "#2f4d8c")
+        sekundärfarbe = st.color_picker("🎨 Sekundärfarbe", "#ffffff")
+        akzentfarbe = st.color_picker("🎨 Akzentfarbe", "#ff9900")
 
-        produkte = []
-        if projekt_typ == "Shop":
-            st.subheader("🍬 Produkte hinzufügen")
-            for i in range(1, 4):
-                produktname = st.text_input(f"Produkt {i} Name", key=f"produkt_{i}")
-                produktpreis = st.text_input(f"Produkt {i} Preis (z. B. 29,99 €)", key=f"preis_{i}")
-                if produktname and produktpreis:
-                    produkte.append((produktname, produktpreis))
+        schriftart = st.selectbox("🔤 Welche Schriftart möchtest du nutzen?", ["Segoe UI", "Arial", "Verdana", "Open Sans", "Roboto"])
+
+        menupunkte = st.multiselect("📂 Welche Menüpunkte brauchst du?", ["Home", "Über uns", "Leistungen", "Blog", "Kontakt", "Produkte", "Shop"])
+
+        seiteninhalte = {}
+        for punkt in menupunkte:
+            seiteninhalte[punkt] = st.text_area(f"📝 Inhalt für " + punkt, height=100)
+
+        bilder = st.file_uploader("📸 Lade Bilder für deine Seite hoch (optional)", accept_multiple_files=True, type=["jpg", "jpeg", "png"])
 
         domain_typ = st.radio("🌐 Welche Domain soll verwendet werden?", ["Eigene Domain", "Domain über externen Anbieter kaufen", "Automatisch zugewiesene Domain nutzen"])
         if domain_typ == "Eigene Domain":
@@ -118,6 +89,12 @@ with right:
             subheadline = f"Verwende unser {tonfall} System, um Ergebnisse zu erzielen, die wirklich zählen."
             cta = "Jetzt starten"
 
+            bilder_html = ""
+            if bilder:
+                for bild in bilder:
+                    bild_url = f"data:image/jpeg;base64,{(bild.read()).hex()}"
+                    bilder_html += f'<img src="{bild_url}" style="width:100%;max-width:400px;margin-bottom:20px;"/>'
+
             html_vorschau = f"""
             <!DOCTYPE html>
             <html lang='de'>
@@ -126,12 +103,12 @@ with right:
                 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
                 <title>{headline}</title>
                 <style>
-                    body {{ font-family: 'Segoe UI', sans-serif; background: #f9f9f9; color: #000; padding: 2rem; }}
-                    h1 {{ color: {farbe}; }}
-                    .cta {{ background-color: {farbe}; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; display: inline-block; margin-top: 1rem; }}
+                    body {{ font-family: '{schriftart}', sans-serif; background: #f9f9f9; color: #000; padding: 2rem; }}
+                    h1 {{ color: {hauptfarbe}; font-size: 2rem; }}
+                    .cta {{ background-color: {akzentfarbe}; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; display: inline-block; margin-top: 1rem; }}
                     nav ul {{ display: flex; gap: 1rem; list-style: none; padding: 0; }}
                     nav li {{ display: inline; }}
-                    .produkte {{ margin-top: 2rem; }}
+                    .inhalt {{ margin-top: 2rem; }}
                     footer {{ margin-top: 4rem; font-size: 0.8rem; color: #555; }}
                 </style>
             </head>
@@ -140,7 +117,8 @@ with right:
                 <h1>{headline}</h1>
                 <p>{subheadline}</p>
                 <a class='cta' href='#'>{cta}</a>
-                {f'<div class="produkte"><h3>Unsere Produkte:</h3><ul>' + ''.join([f'<li><strong>{n}</strong> – {p}</li>' for n, p in produkte]) + '</ul></div>' if produkte else ''}
+                {''.join([f'<div class="inhalt"><h2>{k}</h2><p>{v}</p></div>' for k, v in seiteninhalte.items()])}
+                {bilder_html}
                 <footer>
                     <p><a href='#'>Impressum</a> | <a href='#'>Datenschutz</a> | <a href='#'>AGB</a></p>
                 </footer>
