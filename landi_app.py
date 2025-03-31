@@ -74,7 +74,7 @@ with right:
 
         beschreibung = st.text_area("🧠 Beschreibe deine Wunschseite (z. B. Stil, Zielgruppe, Inhalte):")
 
-        zielgruppe = st.text_input("🧑‍🤝‍🧑 Wer ist deine Zielgruppe?")
+        zielgruppe = st.text_input("👋 Willkommens-Text auf der Startseite")
         angebot = st.text_input("💡 Was bietest du an?")
         tonfall = st.selectbox("🌟 Wie soll der Text klingen?", ["locker", "seriös", "emotional", "inspirierend"])
 
