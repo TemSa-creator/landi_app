@@ -52,6 +52,11 @@ st.markdown(
     label, div[data-testid="stMarkdownContainer"], .stMarkdown, .stText, .stSubheader, .stCaption, .stRadio label, .stSelectbox label, .stTextInput label, .stTextArea label {
         color: #000000 !important;
     }
+    .stLinkButton button {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        border: 1px solid #000000 !important;
+    }
     </style>
     """,
     unsafe_allow_html=True
@@ -131,11 +136,11 @@ with right:
                 </style>
             </head>
             <body>
-                <nav><ul>{''.join([f'<li>{punkt}</li>' for punkt in menupunkte])}</ul></nav>
+                <nav><ul>{''.join([f'<li><a href="#{punkt.lower().replace(" ", "-")}">{punkt}</a></li>' for punkt in menupunkte])}</ul></nav>
                 <h1>{headline}</h1>
                 <p>{subheadline}</p>
                 <a class='cta' href='#'>{cta}</a>
-                {''.join([f'<div class="inhalt"><h2>{k}</h2><p>{v}</p></div>' for k, v in seiteninhalte.items()])}
+                {''.join([f'<div class="inhalt" id="{k.lower().replace(' ', '-')}"><h2>{k}</h2><p>{v}</p></div>' for k, v in seiteninhalte.items()])}
                 {bilder_html}
                 <footer>
                     <p><a href='#'>Impressum</a> | <a href='#'>Datenschutz</a> | <a href='#'>AGB</a></p>
