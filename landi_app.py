@@ -40,6 +40,12 @@ st.markdown(
         border: 1px solid #000000 !important;
         border-radius: 6px !important;
     }
+    select, .stSelectbox div[data-baseweb="select"] > div {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        border: 1px solid #000000 !important;
+        border-radius: 6px !important;
+    }
     </style>
     """,
     unsafe_allow_html=True
