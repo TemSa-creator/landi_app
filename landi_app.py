@@ -199,10 +199,12 @@ Allgemeine Geschäftsbedingungen (AGB)
             st.markdown("### 📦 So nutzt du deine Website ganz einfach")
             col1, col2 = st.columns(2)
             with col1:
-                st.link_button("🔗 Carrd öffnen", "https://carrd.co/build")
+    st.link_button("🔗 Carrd öffnen", "https://carrd.co/build")
+    st.markdown("👉 **So geht's:** Gehe auf Carrd, wähle ein leeres Template oder 'Landing', lösche alle Platzhalter und klicke auf ➕ → Embed → HTML. Füge dort den HTML-Code von oben ein.")
 st.markdown("👉 **So geht's:** Gehe auf Carrd, wähle ein leeres Template oder 'Landing', lösche alle Platzhalter und klicke auf ➕ → Embed → HTML. Füge dort den HTML-Code von oben ein.")
             with col2:
-                st.link_button("🔗 Tentary öffnen", "https://tentary.com/create")
+    st.link_button("🔗 Tentary öffnen", "https://tentary.com/create")
+    st.markdown("👉 **So geht's:** In Tentary kannst du deinen HTML-Code per Editor oder Blockbaukasten einfügen. Alternativ nutzt du die integrierte Baukasten-Vorlage und ersetzt Inhalte durch deinen generierten Text.")
 st.markdown("👉 **So geht's:** In Tentary kannst du deinen HTML-Code per Editor oder Blockbaukasten einfügen. Alternativ nutzt du die integrierte Baukasten-Vorlage und ersetzt Inhalte durch deinen generierten Text.")
 
     st.markdown("---")
