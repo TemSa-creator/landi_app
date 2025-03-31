@@ -72,9 +72,9 @@ with right:
     if projekt_typ != "Bitte wählen":
         st.subheader("2️⃣ Erkläre dein Projekt")
 
-        beschreibung = st.text_area("🧠 Beschreibe deine Wunschseite (z. B. Stil, Zielgruppe, Inhalte):")
+        beschreibung = st.text_area("👋 Willkommens-Text auf der Startseite")
 
-        zielgruppe = st.text_input("👋 Willkommens-Text auf der Startseite")
+        zielgruppe = st.text_input("👥 Zielgruppe (optional – wird nicht angezeigt)")
         angebot = st.text_input("💡 Was bietest du an?")
         tonfall = st.selectbox("🌟 Wie soll der Text klingen?", ["locker", "seriös", "emotional", "inspirierend"])
 
