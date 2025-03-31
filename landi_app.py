@@ -151,7 +151,8 @@ with right:
 
             st.markdown("### 🌐 Vorschau deiner fertigen Website")
             st.code(html_vorschau, language="html")
-            st.download_button("💾 HTML-Datei herunterladen", data=html_vorschau, file_name="landi-website.html")
+            st.markdown("<a href='data:text/html;charset=utf-8," + urllib.parse.quote(html_vorschau) + "' target='_blank' style='display:inline-block;margin-top:10px;padding:10px 20px;border:1px solid #000000;background:#ffffff;color:#000;text-decoration:none;border-radius:6px;'>🚀 Seite jetzt anschauen</a>", unsafe_allow_html=True)
+            st.download_button("💾 HTML-Datei herunterladen", data=html_vorschau, file_name="landi-website.html", mime="text/html")
 
             st.markdown("---")
             st.markdown("### 📦 So nutzt du deine Website ganz einfach")
