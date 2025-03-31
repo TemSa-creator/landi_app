@@ -46,6 +46,9 @@ st.markdown(
         border: 1px solid #000000 !important;
         border-radius: 6px !important;
     }
+    label, .stTextInput label, .stTextArea label, .stSelectbox label, .stRadio label {
+        color: #000000 !important;
+    }
     </style>
     """,
     unsafe_allow_html=True
