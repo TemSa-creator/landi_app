@@ -117,11 +117,22 @@ with right:
             subheadline = f"Verwende unser {tonfall} System, um Ergebnisse zu erzielen, die wirklich zählen."
             cta = "Jetzt starten"
 
-            bilder_html = ""
-            if bilder:
-                for bild in bilder:
-                    bild_url = f"data:image/jpeg;base64,{(bild.read()).hex()}"
-                    bilder_html += f'<img src="{bild_url}" style="width:100%;max-width:400px;margin-bottom:20px;"/>'
+          hero_html = ""
+bilder_rest_html = ""
+
+if bilder:
+    for i, bild in enumerate(bilder):
+        bild_url = f"data:image/jpeg;base64,{(bild.read()).hex()}"
+        if i == 0:
+            hero_html = f'''
+                <div style="text-align:center;margin-bottom:2rem;">
+                    <img src="{bild_url}" style="width:100%;max-width:700px;border-radius:10px;box-shadow:0 5px 20px rgba(0,0,0,0.1);"/>
+                </div>
+            '''
+        else:
+            bilder_rest_html += f'''
+                <img src="{bild_url}" style="width:100%;max-width:400px;margin-bottom:20px;border-radius:6px;"/>
+            '''
 
             html_vorschau = f"""
             <!DOCTYPE html>
