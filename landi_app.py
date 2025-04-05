@@ -162,6 +162,8 @@ if bilder:
                     <p><a href='#'>Impressum</a> | <a href='#'>Datenschutz</a> | <a href='#'>AGB</a></p>
                 </footer>
             </body>
+            {hero_html}
+
             </html>
             """
 
