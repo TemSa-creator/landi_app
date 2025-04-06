@@ -77,7 +77,7 @@ with right:
                 else:
                     bilder_rest_html += f'<img src="{bild_url}" style="width:100%;max-width:400px;margin-bottom:20px;border-radius:6px;"/>'
 
-        if beschreibung:
+        if st.button("🚀 Jetzt generieren") and beschreibung:
             headline = beschreibung
             subheadline = f"Verwende unser {tonfall} System, um Ergebnisse zu erzielen, die wirklich zählen."
             cta = "Jetzt starten"
