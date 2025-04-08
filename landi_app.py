@@ -33,6 +33,11 @@ label, .stMarkdown, .stText, .stSubheader, .stCaption {
     color: #000000 !important;
     border: 1px solid #000000 !important;
 }
+select, .stSelectbox > div, .stTextInput > div > input, .stTextArea > div > textarea {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #000000 !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
